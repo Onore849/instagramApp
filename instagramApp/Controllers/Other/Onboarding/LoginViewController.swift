@@ -10,8 +10,24 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
+    struct Constants {
+        
+        static let cornerRadius: CGFloat = 8.0
+    }
+    
+    
     // Outletの作成
     private let usernameEmailTextField: UITextField = {
+        
+        let field = UITextField()
+        field.placeholder = "Username or Email....."
+        
+        field.returnKeyType = .next
+        field.leftViewMode = .always
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        field.autocapitalizationType = .none
+        field.layer.masksToBounds = true
+        field.layer.cornerRadius = Constants.cornerRadius
         
         return UITextField()
     }()
@@ -67,6 +83,8 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         // assign frames
+        
+        headerView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: 200)
         
         
         
