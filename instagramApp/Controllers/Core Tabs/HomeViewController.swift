@@ -7,12 +7,38 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        handleNotAuthenticated()
+    }
+    
+    
+    // ログインしてなかったらログイン画面に遷移させる処理
+    private func handleNotAuthenticated() {
+        
+        // check auth status
+        if Auth.auth().currentUser == nil {
+            
+            // show log in
+            let loginVC = LoginViewController()
+            
+            // 遷移した時の表示
+            loginVC.modalPresentationStyle = .fullScreen
+            
+            present(loginVC, animated: false)
+        }
+    
+        
     }
 
 

@@ -179,14 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E8062424EFCC0F000C7EE4 /* Onboarding */,
-				F8E8062924EFCC67000C7EE4 /* PostViewController.swift */,
-				F8E8062B24EFCC8F000C7EE4 /* EditProfileViewController.swift */,
-				F8E8062D24EFCCA3000C7EE4 /* SettingsViewController.swift */,
-				F8E8062F24EFCCB7000C7EE4 /* ListViewController.swift */,
-				F8E8063124EFCCC7000C7EE4 /* SearchViewController.swift */,
-				F8E8063324EFCCDC000C7EE4 /* SearchResultViewController.swift */,
-				F8E8063524EFCD0D000C7EE4 /* PostEditorViewController.swift */,
-				F8E8063724EFCD1B000C7EE4 /* PublishPostViewController.swift */,
+				F8E8063B24EFD8AE000C7EE4 /* General */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -198,6 +191,21 @@
 				F8E8062724EFCC3E000C7EE4 /* RegisterationViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F8E8063B24EFD8AE000C7EE4 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				F8E8062924EFCC67000C7EE4 /* PostViewController.swift */,
+				F8E8062B24EFCC8F000C7EE4 /* EditProfileViewController.swift */,
+				F8E8062D24EFCCA3000C7EE4 /* SettingsViewController.swift */,
+				F8E8062F24EFCCB7000C7EE4 /* ListViewController.swift */,
+				F8E8063124EFCCC7000C7EE4 /* SearchViewController.swift */,
+				F8E8063324EFCCDC000C7EE4 /* SearchResultViewController.swift */,
+				F8E8063524EFCD0D000C7EE4 /* PostEditorViewController.swift */,
+				F8E8063724EFCD1B000C7EE4 /* PublishPostViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
