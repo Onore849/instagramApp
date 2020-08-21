@@ -102,7 +102,13 @@ class LoginViewController: UIViewController {
     // headerViewの作成
     private let headerView: UIView = {
         
-        return UIView()
+        let header = UIView()
+        header.clipsToBounds = true
+        let backgroundImageView = UIImageView(image: UIImage(named: "gradient"))
+        header.addSubview(backgroundImageView)
+        header.backgroundColor = .red
+        
+        return header
     }()
 
     
@@ -123,9 +129,35 @@ class LoginViewController: UIViewController {
         
         // assign frames
         
-        headerView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.width, height: 200)
+        headerView.frame = CGRect(
+            x: 0,
+            y: view.safeAreaInsets.top,
+            width: view.width,
+            height: view.height/3.0
+        )
         
         
+        // headerViewの細かい設定
+        configuareHeaderView()
+        
+        
+    }
+    
+    private func configuareHeaderView() {
+        
+        guard headerView.subviews.count == 1 else {
+
+            return
+        }
+
+        guard let backgroundView = headerView.subviews.first as? UIView else {
+
+            return
+        }
+        
+        backgroundView.frame = headerView.bounds
+        
+        // add instagram logo
         
     }
     
