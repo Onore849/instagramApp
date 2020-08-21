@@ -29,6 +29,9 @@
 		F8E8063624EFCD0D000C7EE4 /* PostEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E8063524EFCD0D000C7EE4 /* PostEditorViewController.swift */; };
 		F8E8063824EFCD1B000C7EE4 /* PublishPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E8063724EFCD1B000C7EE4 /* PublishPostViewController.swift */; };
 		F8E8063A24EFD604000C7EE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8E8063924EFD604000C7EE4 /* GoogleService-Info.plist */; };
+		F8E8063D24EFDB07000C7EE4 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E8063C24EFDB07000C7EE4 /* DatabaseManager.swift */; };
+		F8E8063F24EFDBF4000C7EE4 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E8063E24EFDBF4000C7EE4 /* AuthManager.swift */; };
+		F8E8064124EFDC38000C7EE4 /* StrageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E8064024EFDC38000C7EE4 /* StrageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		F8E8063524EFCD0D000C7EE4 /* PostEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostEditorViewController.swift; sourceTree = "<group>"; };
 		F8E8063724EFCD1B000C7EE4 /* PublishPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishPostViewController.swift; sourceTree = "<group>"; };
 		F8E8063924EFD604000C7EE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F8E8063C24EFDB07000C7EE4 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		F8E8063E24EFDBF4000C7EE4 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		F8E8064024EFDC38000C7EE4 /* StrageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrageManager.swift; sourceTree = "<group>"; };
 		FED656330CDCAC37B734CF9C /* Pods-instagramApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instagramApp.debug.xcconfig"; path = "Target Support Files/Pods-instagramApp/Pods-instagramApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +159,9 @@
 				F8E8060124EFC894000C7EE4 /* AppDelegate.swift */,
 				F8E8060324EFC894000C7EE4 /* SceneDelegate.swift */,
 				F8E8063924EFD604000C7EE4 /* GoogleService-Info.plist */,
+				F8E8063C24EFDB07000C7EE4 /* DatabaseManager.swift */,
+				F8E8063E24EFDBF4000C7EE4 /* AuthManager.swift */,
+				F8E8064024EFDC38000C7EE4 /* StrageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -332,15 +341,18 @@
 				F8E8062124EFCA82000C7EE4 /* ProfileViewController.swift in Sources */,
 				F8E8063624EFCD0D000C7EE4 /* PostEditorViewController.swift in Sources */,
 				F8E8062A24EFCC67000C7EE4 /* PostViewController.swift in Sources */,
+				F8E8063D24EFDB07000C7EE4 /* DatabaseManager.swift in Sources */,
 				F8E8060224EFC894000C7EE4 /* AppDelegate.swift in Sources */,
 				F8E8063424EFCCDC000C7EE4 /* SearchResultViewController.swift in Sources */,
 				F8E8062624EFCC28000C7EE4 /* LoginViewController.swift in Sources */,
 				F8E8063224EFCCC7000C7EE4 /* SearchViewController.swift in Sources */,
 				F8E8061D24EFCA7C000C7EE4 /* CameraViewController.swift in Sources */,
+				F8E8063F24EFDBF4000C7EE4 /* AuthManager.swift in Sources */,
 				F8E8061F24EFCA7E000C7EE4 /* NotificationsViewController.swift in Sources */,
 				F8E8060424EFC894000C7EE4 /* SceneDelegate.swift in Sources */,
 				F8E8063024EFCCB7000C7EE4 /* ListViewController.swift in Sources */,
 				F8E8062E24EFCCA3000C7EE4 /* SettingsViewController.swift in Sources */,
+				F8E8064124EFDC38000C7EE4 /* StrageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
