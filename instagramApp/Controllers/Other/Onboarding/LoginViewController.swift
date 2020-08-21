@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     
     
     // Outletの作成
+    
+    // textFieldの記述
     private let usernameEmailTextField: UITextField = {
         
         let field = UITextField()
@@ -29,6 +31,8 @@ class LoginViewController: UIViewController {
         field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
+        
+        field.backgroundColor = .secondarySystemBackground
         
         return UITextField()
     }()
@@ -47,12 +51,25 @@ class LoginViewController: UIViewController {
         field.layer.cornerRadius = Constants.cornerRadius
         
         field.isSecureTextEntry = true
+        field.backgroundColor = .secondarySystemBackground
         
         
         return field
     }()
     
+    
+    // buttonの記述
     private let loginButton: UIButton = {
+        
+        let button = UIButton()
+        
+        button.setTitle("Log In", for: .normal)
+        
+        button.layer.masksToBounds = true
+        
+        button.layer.cornerRadius = Constants.cornerRadius
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
         
         return UIButton()
     }()
@@ -72,12 +89,24 @@ class LoginViewController: UIViewController {
         return UIButton()
     }()
     
+    private let createAccountButton: UIButton = {
+        
+        let button = UIButton()
+        
+        button.setTitleColor(.label, for: .normal)
+        button.setTitle("New User? Create an Account", for: .normal)
+        
+        return button
+    }()
+    
+    // headerViewの作成
     private let headerView: UIView = {
         
         return UIView()
     }()
 
-
+    
+    // 表示部分
     override func viewDidLoad() {
         super.viewDidLoad()
         
