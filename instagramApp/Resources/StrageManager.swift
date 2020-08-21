@@ -8,9 +8,9 @@
 
 import FirebaseStorage
 
-public class StrageManager {
+public class StorageManager {
     
-    static let shared = StrageManager()
+    static let shared = StorageManager()
     
     // MARK: - Public
     
