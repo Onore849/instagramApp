@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         field.autocapitalizationType = .none
+        field.autocorrectionType = .no
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
         
@@ -35,6 +36,15 @@ class LoginViewController: UIViewController {
     private let passwordField: UITextField = {
         
         let field = UITextField()
+        field.placeholder = "password....."
+        
+        field.returnKeyType = .next
+        field.leftViewMode = .always
+        field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
+        field.layer.masksToBounds = true
+        field.layer.cornerRadius = Constants.cornerRadius
         
         field.isSecureTextEntry = true
         
