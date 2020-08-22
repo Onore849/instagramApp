@@ -141,6 +141,18 @@ class RegisterationViewController: UIViewController {
     
     @objc private func didTapRegister() {
         
+        passwordField.resignFirstResponder()
+        usernameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        
+        guard let email = emailField.text, !email.isEmpty,
+            let username = usernameField.text, !username.isEmpty,
+            let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
+                
+                return
+                
+        }
+        
         
         
     }
@@ -148,10 +160,29 @@ class RegisterationViewController: UIViewController {
 
 }
 
+// キーボードの処理
 extension RegisterationViewController: UITextFieldDelegate {
     
+    // returnキーが押されたら実行する
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
+        if textField == usernameField {
+            
+            // 自動的にemailFieldでキーボードが開く
+            emailField.becomeFirstResponder()
+            
+        }
+        else if textField == emailField {
+            
+            passwordField.becomeFirstResponder()
+            
+        }
+        else {
+            
+            didTapRegister()
+        }
+        
+        return true
         
     }
     
