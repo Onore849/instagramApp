@@ -106,7 +106,6 @@ class LoginViewController: UIViewController {
         header.clipsToBounds = true
         let backgroundImageView = UIImageView(image: UIImage(named: "gradient"))
         header.addSubview(backgroundImageView)
-        header.backgroundColor = .red
         
         return header
     }()
@@ -131,7 +130,8 @@ class LoginViewController: UIViewController {
         
         headerView.frame = CGRect(
             x: 0,
-            y: view.safeAreaInsets.top,
+            // safeAreaより下にしたい場合はy: view.safeAreaInsets.top,
+            y: 0.0,
             width: view.width,
             height: view.height/3.0
         )
@@ -150,7 +150,7 @@ class LoginViewController: UIViewController {
             return
         }
 
-        guard let backgroundView = headerView.subviews.first as? UIView else {
+        guard let backgroundView = headerView.subviews.first else {
 
             return
         }
@@ -158,6 +158,15 @@ class LoginViewController: UIViewController {
         backgroundView.frame = headerView.bounds
         
         // add instagram logo
+        let imageView = UIImageView(image: UIImage(named: "logo3"))
+        headerView.addSubview(imageView)
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame = CGRect(x: headerView.width/4,
+                                 y: view.safeAreaInsets.top,
+                                 width: headerView.width/2,
+                                 height: headerView.height - view.safeAreaInsets.top)
+        
         
     }
     
