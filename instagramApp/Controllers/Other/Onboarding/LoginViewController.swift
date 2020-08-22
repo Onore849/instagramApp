@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class LoginViewController: UIViewController {
     
@@ -86,12 +87,25 @@ class LoginViewController: UIViewController {
     
     private let termsButton: UIButton = {
         
-        return UIButton()
+        let button = UIButton()
+        
+        button.setTitle("Terms of Serviced", for: .normal)
+        
+        button.setTitleColor(.secondaryLabel, for: .normal)
+        
+        return button
     }()
     
     private let privacyButton: UIButton = {
         
-        return UIButton()
+        let button = UIButton()
+        
+        button.setTitle("Privacy Policy", for: .normal)
+        
+        button.setTitleColor(.secondaryLabel, for: .normal)
+        
+        return button
+        
     }()
     
     private let didTapCreatedButton: UIButton = {
@@ -125,7 +139,23 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // deleagteメソッドを呼ぶ
+        loginButton.addTarget(self,
+                              action: #selector(didTapLoginButton),
+                              for: .touchUpInside)
+        
+        createAccountButton.addTarget(self,
+                              action: #selector(didTapTapCreateAccountButton),
+                              for: .touchUpInside)
+        
+        termsButton.addTarget(self,
+                              action: #selector(didTapTermsButton),
+                              for: .touchUpInside)
+        
+        privacyButton.addTarget(self,
+                              action: #selector(didTapPrivacyButton),
+                              for: .touchUpInside)
+        
+        // deleagteメソッド
         usernameEmailTextField.delegate = self
         passwordField.delegate = self
         
@@ -152,7 +182,7 @@ class LoginViewController: UIViewController {
         
         usernameEmailTextField.frame = CGRect(
             x: 25,
-            y: headerView.bottom + 10,
+            y: headerView.bottom + 40,
             width: view.width - 50,
             height: 52
         )
@@ -179,6 +209,20 @@ class LoginViewController: UIViewController {
             width: view.width - 50,
             height: 52
 
+        )
+        
+        termsButton.frame = CGRect(
+            x: 10,
+            y: view.height - view.safeAreaInsets.bottom - 100,
+            width: view.width - 20,
+            height: 50
+        )
+        
+        privacyButton.frame = CGRect(
+            x: 10,
+            y: view.height - view.safeAreaInsets.bottom - 50,
+            width: view.width - 20,
+            height: 50
         )
 
         
@@ -208,10 +252,12 @@ class LoginViewController: UIViewController {
         headerView.addSubview(imageView)
         
         imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: headerView.width/4,
-                                 y: view.safeAreaInsets.top,
-                                 width: headerView.width/2,
-                                 height: headerView.height - view.safeAreaInsets.top)
+        imageView.frame = CGRect(
+            x: headerView.width/4,
+            y: view.safeAreaInsets.top,
+            width: headerView.width/2,
+            height: headerView.height - view.safeAreaInsets.top
+        )
         
         
     }
@@ -226,16 +272,61 @@ class LoginViewController: UIViewController {
         view.addSubview(termsButton)
         view.addSubview(createAccountButton)
         view.addSubview(headerView)
+        view.addSubview(privacyButton)
         
     }
     
-    @objc private func didTapLoginButton() {}
+    @objc private func didTapLoginButton() {
+        
+        passwordField.resignFirstResponder()
+        usernameEmailTextField.resignFirstResponder()
+        
+        // ???
+        guard let usernameEmail = usernameEmailTextField.text, !usernameEmail.isEmpty,
+            let password = passwordField.text,!password.isEmpty, password.count >= 8 else {
+            
+            return
+            
+        }
+        
+        // login functionally
+        
+    }
     
-    @objc private func didTapTermsButton() {}
+    @objc private func didTapTermsButton() {
+        
+        guard let url = URL(string: "https://help.instagram.com/581066165581870") else {
+            
+            return
+        }
+        
+        let vc = SFSafariViewController(url: url)
+        
+        present(vc, animated: true)
+        
+    }
     
-    @objc private func didTapPrivacyButton() {}
+    @objc private func didTapPrivacyButton() {
+        
+        guard let url = URL(string: "https://help.instagram.com/196883487377501/?hel-") else {
+            
+            return
+        }
+        
+        let vc = SFSafariViewController(url: url)
+        
+        present(vc, animated: true)
+        
+        
+    }
     
-    @objc private func didTapTapCreateAccountButton() {}
+    
+    @objc private func didTapTapCreateAccountButton() {
+        
+        let vc = RegisterationViewController()
+        present(vc, animated: true)
+        
+    }
     
 
 }
