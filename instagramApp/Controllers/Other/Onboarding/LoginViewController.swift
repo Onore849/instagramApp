@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         
         field.backgroundColor = .secondarySystemBackground
         
-        return UITextField()
+        return field
     }()
     
     private let passwordField: UITextField = {
@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         
-        return UIButton()
+        return button
     }()
     
     private let termsButton: UIButton = {
@@ -115,6 +115,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // deleagteメソッドを呼ぶ
+        usernameEmailTextField.delegate = self
+        passwordField.delegate = self
+        
         addSubviews()
         
         // cmd + shift + a でダークモード、通常モードの切替
@@ -135,6 +139,38 @@ class LoginViewController: UIViewController {
             width: view.width,
             height: view.height/3.0
         )
+        
+        usernameEmailTextField.frame = CGRect(
+            x: 25,
+            y: headerView.bottom + 10,
+            width: view.width - 50,
+            height: 52
+        )
+        
+        passwordField.frame = CGRect(
+            x: 25,
+            y: usernameEmailTextField.bottom + 10,
+            width: view.width - 50,
+            height: 52
+
+        )
+        
+        loginButton.frame = CGRect(
+            x: 25,
+            y: passwordField.bottom + 10,
+            width: view.width - 50,
+            height: 52
+
+        )
+        
+        createAccountButton.frame = CGRect(
+            x: 25,
+            y: loginButton.bottom + 10,
+            width: view.width - 50,
+            height: 52
+
+        )
+
         
         
         // headerViewの細かい設定
@@ -178,7 +214,7 @@ class LoginViewController: UIViewController {
         view.addSubview(passwordField)
         view.addSubview(loginButton)
         view.addSubview(termsButton)
-        view.addSubview(privacyButton)
+        view.addSubview(createAccountButton)
         view.addSubview(headerView)
         
     }
