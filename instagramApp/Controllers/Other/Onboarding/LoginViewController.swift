@@ -25,12 +25,17 @@ class LoginViewController: UIViewController {
         field.placeholder = "Username or Email....."
         
         field.returnKeyType = .next
+        
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
+        
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
+        field.layer.borderWidth = 1.0
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         
         field.backgroundColor = .secondarySystemBackground
         
@@ -42,13 +47,18 @@ class LoginViewController: UIViewController {
         let field = UITextField()
         field.placeholder = "password....."
         
-        field.returnKeyType = .next
+        field.returnKeyType = .continue
+        
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
+        
         field.layer.masksToBounds = true
         field.layer.cornerRadius = Constants.cornerRadius
+        field.layer.borderWidth = 1.0
+        field.layer.borderColor = UIColor.secondaryLabel.cgColor
         
         field.isSecureTextEntry = true
         field.backgroundColor = .secondarySystemBackground
@@ -227,8 +237,26 @@ class LoginViewController: UIViewController {
     
     @objc private func didTapTapCreateAccountButton() {}
     
+
+}
+
+
+extension LoginViewController: UITextFieldDelegate {
     
-
-
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == usernameEmailTextField {
+            
+            passwordField.becomeFirstResponder()
+        }
+        else if textField == passwordField {
+            
+            didTapLoginButton()
+        }
+        
+        return true
+    }
+    
+    
+    
 }
