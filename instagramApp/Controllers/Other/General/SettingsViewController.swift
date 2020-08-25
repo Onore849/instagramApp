@@ -69,7 +69,35 @@ final class SettingsViewController: UIViewController {
     // logoutする処理を記述
     private func didTapLogOut() {
         
-        
+        AuthManager.shared.logOut { ( success ) in
+            
+            DispatchQueue.main.async {
+                
+                if success {
+                    // present log in
+                    
+                    let loginVC = LoginViewController()
+                    loginVC.modalPresentationStyle = .fullScreen
+                    self.present(loginVC, animated: true) {
+                        
+                        self.navigationController?.popViewController(animated: false)
+                        self.tabBarController?.selectedIndex = 0
+                        
+                    }
+                    
+                }
+                else {
+                    // error occured
+                    
+                    
+                }
+                
+            }
+            
+            
+            
+            
+        }
         
     }
 
@@ -94,7 +122,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-//        cell.te
+        cell.textLabel?.text = data[indexPath.section][indexPath.row].title
         
         return cell
     }
@@ -104,7 +132,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // Handle cell selection
-        
+        data[indexPath.section][indexPath.row].handler()
         
     }
     

@@ -97,6 +97,31 @@ public class AuthManager {
             print(username)
             
         }
+    }
+    
+    
+    // MARK:- LogOut
+    /// Attempt to log out firebase user
+    public func logOut(completion: (Bool) -> Void) {
+        
+        do {
+            
+            try Auth.auth().signOut()
+            
+            // SignOutが成功: 戻り値は無し
+            completion(true)
+            return
+            
+        }
+        catch {
+            
+            print(error)
+            
+            // signOutが失敗: 戻り値はなし
+            completion(false)
+            
+        }
+        
         
     }
     
