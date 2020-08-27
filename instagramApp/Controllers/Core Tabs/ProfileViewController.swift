@@ -9,12 +9,17 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    // collectionViewの設定
+    private var collectionView: UICollectionView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         configureNavigationBar()
+        
+        collectionView = UICollectionView()
         
     }
     

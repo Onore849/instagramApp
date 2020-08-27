@@ -28,9 +28,7 @@ final class SettingsViewController: UIViewController {
         
     }()
     
-    private var data = [
-        [SettingCellModel]
-        ]()
+    private var data = [ [SettingCellModel] ]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,36 +67,44 @@ final class SettingsViewController: UIViewController {
     // logoutする処理を記述
     private func didTapLogOut() {
         
-        AuthManager.shared.logOut { ( success ) in
+        let actionSheet = UIAlertController(title: "Log out", message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
             
-            DispatchQueue.main.async {
+            AuthManager.shared.logOut( completion: { ( success ) in
                 
-                if success {
-                    // present log in
+                DispatchQueue.main.async {
                     
-                    let loginVC = LoginViewController()
-                    loginVC.modalPresentationStyle = .fullScreen
-                    self.present(loginVC, animated: true) {
+                    if success {
+                        // present log in
                         
-                        self.navigationController?.popViewController(animated: false)
-                        self.tabBarController?.selectedIndex = 0
+                        let loginVC = LoginViewController()
+                        loginVC.modalPresentationStyle = .fullScreen
+                        self.present(loginVC, animated: true) {
+                            
+                            self.navigationController?.popViewController(animated: false)
+                            self.tabBarController?.selectedIndex = 0
+                            
+                        }
                         
                     }
-                    
+                    else {
+                        // error occured
+                        // ??
+                        fatalError("Could not log out user")
+   
+                    }
                 }
-                else {
-                    // error occured
-                    
-                    
-                }
-                
-            }
+            })
             
-            
-            
-            
-        }
+        }))
         
+        actionSheet.popoverPresentationController?.sourceView = tableView
+        actionSheet.popoverPresentationController?.sourceRect = tableView.bounds
+        
+        present(actionSheet, animated: true)
+    
     }
 
 }
