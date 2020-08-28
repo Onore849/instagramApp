@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 struct SettingCellModel {
     
@@ -20,9 +21,10 @@ struct SettingCellModel {
 final class SettingsViewController: UIViewController {
     
     private let tableView: UITableView = {
-       
-        // ??
+    
         let tableView = UITableView(frame: .zero, style: .grouped)
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         return tableView
         
@@ -33,9 +35,11 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureModels()
+        
         view.backgroundColor = .systemBackground
         
-        configureModels()
+        view.addSubview(tableView)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -51,18 +55,119 @@ final class SettingsViewController: UIViewController {
     
     private func configureModels() {
         
-        let section = [
+        data.append([
+            
+            SettingCellModel(title: "Edit Profile") { [ weak self ] in
+                
+                self?.didTapEditProfile()
+                
+            },
+            
+            SettingCellModel(title: "Invite Friends") { [ weak self ] in
+                
+                self?.didTapInviteFriends()
+                
+            },
+            
+            SettingCellModel(title: "Save Original Posts") { [ weak self ] in
+                
+                self?.didTapSaveOriginalPosts()
+                
+            }
+        ])
+        
+        data.append([
+            
+            SettingCellModel(title: "Terms of Service") { [ weak self ] in
+                
+                self?.openURL(type: .terms)
+                
+            },
+            
+            SettingCellModel(title: "Privacy Policy") { [ weak self ] in
+                
+                self?.openURL(type: .privacy)
+                
+            },
+            
+            SettingCellModel(title: "Help / Feedback") { [ weak self ] in
+                
+                self?.openURL(type: .help)
+                
+            },
+        ])
+        
+        data.append([
             
             SettingCellModel(title: "Log Out") { [ weak self ] in
                 
                 self?.didTapLogOut()
                 
             }
-        ]
-        
-        data.append(section)
+        ])
         
     }
+    
+    private func didTapEditProfile() {
+        
+        
+    }
+    
+    private func didTapInviteFriends() {
+        // show share sheet to invite friends
+        
+        
+    }
+    
+    private func didTapSaveOriginalPosts() {
+        
+        let vc = EditProfileViewController()
+        vc.title = "edit profile"
+        
+        let navVC = UINavigationController(rootViewController: vc)
+        
+        present(navVC, animated: true)
+    }
+    
+    enum SettingsURLType {
+        
+        case terms, privacy, help
+        
+    }
+    
+    private func openURL(type: SettingsURLType) {
+        
+        let urlString: String
+        
+        switch type {
+        case .terms:
+            urlString = "https://help.instagram.com/581066165581870"
+        case .privacy:
+            urlString = "https://help.instagram.com/196883487377501/?hel-"
+        case .help:
+            urlString = "https://help.instagram.com/"
+            
+        }
+        
+        // urlstringをキャストした時にoptional型になっている
+        guard let url = URL(string: urlString) else {
+            
+            return
+            
+        }
+        
+        // optional型だと引数に取れない
+        let vc = SFSafariViewController(url: url)
+        present(vc, animated: true)
+        
+    }
+    
+//    private func didTapTermsOfServices() {
+//
+//
+//    }
+    
+//    private func didTap
     
     // logoutする処理を記述
     private func didTapLogOut() {
@@ -129,6 +234,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.textLabel?.text = data[indexPath.section][indexPath.row].title
+        cell.accessoryType = .disclosureIndicator
+        
         
         return cell
     }
