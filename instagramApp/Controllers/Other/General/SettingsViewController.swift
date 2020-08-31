@@ -110,23 +110,24 @@ final class SettingsViewController: UIViewController {
     
     private func didTapEditProfile() {
         
+        let vc = EditProfileViewController()
+        vc.title = "edit profile"
+        let navVC = UINavigationController(rootViewController: vc)
+        
+        navVC.modalPresentationStyle = .fullScreen
+        
+        present(navVC, animated: true)
+        
         
     }
     
     private func didTapInviteFriends() {
         // show share sheet to invite friends
         
-        
     }
     
     private func didTapSaveOriginalPosts() {
         
-        let vc = EditProfileViewController()
-        vc.title = "edit profile"
-        
-        let navVC = UINavigationController(rootViewController: vc)
-        
-        present(navVC, animated: true)
     }
     
     enum SettingsURLType {

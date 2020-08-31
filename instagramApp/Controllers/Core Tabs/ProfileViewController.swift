@@ -28,6 +28,20 @@ final class ProfileViewController: UIViewController {
         layout.itemSize = CGSize(width: view.width/3, height: view.width/3)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
+        collectionView?.backgroundColor = .red
+        
+        // Cell
+        collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.idntifier)
+        
+        // Headers
+        collectionView?.register(ProfileInfoHeaderCollectionReusableView.self,
+                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                 withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
+        
+        collectionView?.register(ProfileTabsCollectionReusableView.self,
+                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                 withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
+        
         collectionView?.delegate = self
         collectionView?.dataSource = self
         
@@ -68,13 +82,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 0
+        return 30
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.idntifier, for: indexPath) as! PhotoCollectionViewCell
+        
+        cell.backgroundColor = .systemBlue
+        
+        
+        return cell
         
     }
     
