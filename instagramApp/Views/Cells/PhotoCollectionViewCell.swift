@@ -5,7 +5,7 @@
 //  Created by 野澤拓己 on 2020/08/29.
 //  Copyright © 2020 Takumi Nozawa. All rights reserved.
 //
-
+import SDWebImage
 import UIKit
 
 class PhotoCollectionViewCell: UICollectionViewCell {
@@ -37,6 +37,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        contentView.backgroundColor = .secondarySystemBackground
+        
         // contentViewに画像をセットする
         contentView.addSubview(photoImageView)
         contentView.clipsToBounds = true
@@ -50,12 +52,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemtnted")
     }
     
-    public func configure(with model: String) {
+    public func configure(with model: UserPost) {
         
+        let url = model.thumbnailImage
+        photoImageView.sd_setImage(with: url, completed: nil)
         
     }
     
-    public func configure(with: imageName: String) {
+    public func configure(debug imageName: String) {
         photoImageView.image = UIImage(named: imageName)
     }
 }

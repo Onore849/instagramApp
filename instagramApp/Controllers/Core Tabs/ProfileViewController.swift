@@ -97,8 +97,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.idntifier, for: indexPath) as! PhotoCollectionViewCell
         
-        
-        
+        cell.configure(debug: "test")
         
         return cell
         
