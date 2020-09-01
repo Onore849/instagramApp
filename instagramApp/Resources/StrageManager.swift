@@ -22,10 +22,10 @@ public class StorageManager {
     
     // MARK: - Public
     
-    public func uploadUserPost(model: UserPost, completion: @escaping (Result<URL, Error>) -> Void) {
-        
-        
-    }
+//    public func uploadUserPost(model: UserPost, completion: @escaping (Result<URL, Error>) -> Void) {
+//        
+//        
+//    }
     
     public func downloadImage(with reference: String, completion: @escaping (Result<URL, IGStorageManagerError>) -> Void) {
         
