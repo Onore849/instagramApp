@@ -35,7 +35,7 @@ final class ProfileViewController: UIViewController {
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        collectionView?.backgroundColor = .red
+        collectionView?.backgroundColor = .systemOrange
         
         // Cell
         collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.idntifier)
@@ -87,16 +87,24 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 30
+        if section == 0 {
+            return 0
+        }
         
+        return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.idntifier, for: indexPath) as! PhotoCollectionViewCell
         
+        // collectionViewに画像を設定
         cell.configure(debug: "test")
         
         return cell
@@ -106,6 +114,44 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            // footer
+            return UICollectionReusableView()
+        }
+        
+        if indexPath.section == 1 {
+            // tabs header
+            let tabControlHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+            withReuseIdentifier: ProfileTabsCollectionReusableView.identifier,
+            for: indexPath) as! ProfileTabsCollectionReusableView
+            
+            return tabControlHeader
+        }
+        
+        
+        let profileHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                            withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier,
+                                                                            for: indexPath) as! ProfileInfoHeaderCollectionReusableView
+        
+        return profileHeader
+        
+    }
+    
+    // collectionViewのheaderのheightを設定
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if section == 0 {
+            return CGSize(width: collectionView.width, height: collectionView.height/3)
+            
+        }
+        
+        // Size of section tabs
+        return CGSize(width: collectionView.width, height: 65)
         
     }
     
