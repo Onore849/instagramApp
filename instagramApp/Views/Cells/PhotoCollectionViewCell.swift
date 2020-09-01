@@ -37,10 +37,26 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        // contentViewに画像をセットする
+        contentView.addSubview(photoImageView)
+        contentView.clipsToBounds = true
+        
+        accessibilityLabel = "User post image"
+        accessibilityHint = "Double-tap to open post"
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemtnted")
+    }
+    
+    public func configure(with model: String) {
+        
+        
+    }
+    
+    public func configure(with: imageName: String) {
+        photoImageView.image = UIImage(named: imageName)
     }
 }
 

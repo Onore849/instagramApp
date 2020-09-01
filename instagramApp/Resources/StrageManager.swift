@@ -51,8 +51,34 @@ public enum UserPostType {
     
 }
 
+/// Represent user post
 public struct UserPost {
     
-    let postType: UserPostType
+    let postType: UserPostType // either video or full resolution photo
+    let thumbnailImage: URL
+    let caption: String?
+    let likeCount: [PostLikes]
+    let comments: [PostComment]
+    let createdDate: Date
     
 }
+
+struct PostLikes {
+    let username: String
+    let postIndentifier: String
+}
+
+struct CommentLikes {
+    let username: String
+    let commentIndentifier: String
+}
+
+struct PostComment {
+    let identifier: String
+    let username: String
+    let text: String
+    let createDate: Date
+    let likes: [CommentLikes]
+    
+}
+
