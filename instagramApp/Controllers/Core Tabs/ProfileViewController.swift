@@ -24,8 +24,15 @@ final class ProfileViewController: UIViewController {
         // ??
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: view.width/3, height: view.width/3)
+        // item同士の縦感覚
+        layout.minimumLineSpacing = 1
+        // item同士の縦の感覚
+        layout.minimumInteritemSpacing = 1
+        
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
+        
+        let size = (view.width - 4)/3
+        layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         collectionView?.backgroundColor = .red
@@ -90,7 +97,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.idntifier, for: indexPath) as! PhotoCollectionViewCell
         
-        cell.backgroundColor = .systemBlue
+        
         
         
         return cell
