@@ -14,6 +14,8 @@ final class ProfileViewController: UIViewController {
     
     // collectionViewの設定
     private var collectionView: UICollectionView?
+    
+    private var userPosts = [UserPost]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +36,6 @@ final class ProfileViewController: UIViewController {
         let size = (view.width - 4)/3
         layout.itemSize = CGSize(width: size, height: size)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        collectionView?.backgroundColor = .systemOrange
         
         // Cell
         collectionView?.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.idntifier)
@@ -97,12 +97,16 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return 0
         }
         
+        // return userPosts.count
         return 30
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        // let model = userPosts[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.idntifier, for: indexPath) as! PhotoCollectionViewCell
+        
+        // cell.configure(with: model)
         
         // collectionViewに画像を設定
         cell.configure(debug: "test")
@@ -112,9 +116,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         collectionView.deselectItem(at: indexPath, animated: true)
         
+        // get the model and open post contrller
+        // let model = userPosts[indexPath.row]
+        let vc = PostViewController()
+        vc.title = "Post"
+        vc.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
