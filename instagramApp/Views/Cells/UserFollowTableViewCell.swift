@@ -21,6 +21,8 @@ class UserFollowTableViewCell: UITableViewCell {
     private let profileImageView: UIImageView = {
        
         let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        imageView.backgroundColor = .secondarySystemBackground
         imageView.contentMode = .scaleAspectFill
         
         return imageView
@@ -31,6 +33,7 @@ class UserFollowTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 17, weight: .semibold)
+        label.text = "joe"
         
         return label
     }()
@@ -40,6 +43,7 @@ class UserFollowTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 1
         label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.text = "@joe"
         
         return label
     }()
@@ -47,7 +51,7 @@ class UserFollowTableViewCell: UITableViewCell {
     private let followButton: UIButton = {
        
         let button = UIButton()
-        
+        button.backgroundColor = .link
         return button
     }()
     
@@ -86,6 +90,25 @@ class UserFollowTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        profileImageView.frame = CGRect(x: 3, y: 3, width: contentView.height-6, height: contentView.height-6)
+        profileImageView.layer.cornerRadius = profileImageView.height/2
+        
+        let buttonWidth = contentView.width > 500 ? 220.0 : contentView.width/3
+        followButton.frame = CGRect(x: contentView.width - 5 - buttonWidth, y: 5, width: buttonWidth, height: contentView.height - 10)
+        
+        let labelHeight = contentView.height/2
+        nameLabel.frame = CGRect(
+            x: profileImageView.right + 5,
+            y: 0,
+            width: contentView.width - 3 - profileImageView.width,
+            height: labelHeight
+        )
+        usernameLabel.frame = CGRect(
+            x: profileImageView.right + 5,
+            y: nameLabel.bottom,
+            width: contentView.width - 3 - profileImageView.width,
+            height: labelHeight
+        )
         
     }
 
