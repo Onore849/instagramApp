@@ -139,6 +139,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             withReuseIdentifier: ProfileTabsCollectionReusableView.identifier,
             for: indexPath) as! ProfileTabsCollectionReusableView
             
+            tabControlHeader.delegate = self
+            
             return tabControlHeader
         }
         
@@ -161,7 +163,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         
         // Size of section tabs
-        return CGSize(width: collectionView.width, height: 65)
+        return CGSize(width: collectionView.width, height: 50)
         
     }
     
@@ -201,7 +203,16 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
 //        navigationController?.pushViewController(vc, animated: true)
 //        present(vc, animated: true)
     }
+}
+
+extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
+    func didTapGredButtonTab() {
+        <#code#>
+    }
     
+    func didTapTaggedButtonTab() {
+        <#code#>
+    }
     
     
     
