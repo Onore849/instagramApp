@@ -58,10 +58,14 @@ class ProfileTabsCollectionReusableView: UICollectionReusableView {
     }
     
     @objc private func didTapGridButton() {
+        gridButton.tintColor = .systemBlue
+        taggedButton.tintColor = .lightGray
         delegate?.didTapGredButtonTab()
     }
     
     @objc private func didTapTaggedButton() {
+        gridButton.tintColor = .lightGray
+        taggedButton.tintColor = .systemBlue
         delegate?.didTapTaggedButtonTab()
     }
     

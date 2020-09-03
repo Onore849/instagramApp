@@ -182,14 +182,14 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
     }
     
     func profileHeaderDidTapFollowersButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        let vc = ListViewController()
+        let vc = ListViewController(data: ["joe", "joe", "joe", "joe",])
         vc.title = "followers"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func profileHeaderDidTapFollowingButton(_ header: ProfileInfoHeaderCollectionReusableView) {
-        let vc = ListViewController()
+        let vc = ListViewController(data: ["joe", "joe", "joe", "joe",])
         vc.title = "following"
         vc.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(vc, animated: true)
@@ -207,13 +207,11 @@ extension ProfileViewController: ProfileInfoHeaderCollectionReusableViewDelegate
 
 extension ProfileViewController: ProfileTabsCollectionReusableViewDelegate {
     func didTapGredButtonTab() {
-        <#code#>
+        // Reload collection view with data
     }
     
     func didTapTaggedButtonTab() {
-        <#code#>
+        // Reload collection view with data
     }
-    
-    
-    
+
 }
