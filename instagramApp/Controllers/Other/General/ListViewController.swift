@@ -96,6 +96,8 @@ extension ListViewController: UserFollowTableViewCellDelegate {
         case .following:
             // perform firebase update to unfollow
             
+            
+            
             break
             
         case .not_following:
