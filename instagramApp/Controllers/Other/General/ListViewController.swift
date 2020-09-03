@@ -10,7 +10,7 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    private let data: [String]
+    private var data: [UserRelationship]
     
     private let tableView: UITableView = {
        
@@ -20,8 +20,10 @@ class ListViewController: UIViewController {
         return tableView
     }()
     
+    // MARK:- Init
+    
     // ProfileViewControllerから値入れた値を呼び出す
-    init(data: [String]) {
+    init(data: [UserRelationship]) {
         
         self.data = data
         
@@ -66,7 +68,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UserFollowTableViewCell.identifier, for: indexPath) as! UserFollowTableViewCell
         
-        cell.configure(with: "")
+        cell.configure(with: data[indexPath.row])
         
         return cell
     }
@@ -76,6 +78,10 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         // Go to Profile of selceted  cell
         let model = data[indexPath.row]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
     
     
