@@ -70,6 +70,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.configure(with: data[indexPath.row])
         
+        cell.delegate = self
+        
         return cell
     }
     
@@ -84,5 +86,24 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return 75
     }
     
+    
+}
+
+extension ListViewController: UserFollowTableViewCellDelegate {
+    func didTapFollowUNfollowButton(model: UserRelationship) {
+        
+        switch model.type {
+        case .following:
+            // perform firebase update to unfollow
+            
+            break
+            
+        case .not_following:
+            // perform firebase update to follow
+            
+            break
+            
+        }
+    }
     
 }

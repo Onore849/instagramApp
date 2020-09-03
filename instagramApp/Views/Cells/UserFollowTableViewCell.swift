@@ -79,6 +79,7 @@ class UserFollowTableViewCell: UITableViewCell {
         contentView.addSubview(usernameLabel)
         contentView.addSubview(followButton)
         contentView.addSubview(profileImageView)
+        selectionStyle = .none
         
         followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
     }
