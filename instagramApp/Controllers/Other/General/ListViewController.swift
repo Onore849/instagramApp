@@ -15,7 +15,7 @@ class ListViewController: UIViewController {
     private let tableView: UITableView = {
        
         let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register( UserFollowTableViewCell.self, forCellReuseIdentifier: UserFollowTableViewCell.identifier)
         
         return tableView
     }()
@@ -64,9 +64,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UserFollowTableViewCell.identifier, for: indexPath) as! UserFollowTableViewCell
         
-        cell.textLabel?.text = data[indexPath.row]
+        cell.configure(with: "")
         
         return cell
     }
