@@ -14,7 +14,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
         
         let tableView = UITableView()
         tableView.isHidden = false
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        tableView.register(NotificationLikeEventTableViewCell.self, forCellReuseIdentifier: NotificationLikeEventTableViewCell.identfifier)
+        tableView.register(NotificationFollowEventTableViewCell.self, forCellReuseIdentifier: NotificationFollowEventTableViewCell.identifier)
         
         return tableView
     
@@ -30,6 +32,8 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     }()
     
     private lazy var noNotificationsView = NoNotificationsView()
+    
+    // MARK:- LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +75,9 @@ class NotificationsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: NotificationLikeEventTableViewCell.identfifier, for: indexPath) as! NotificationLikeEventTableViewCell
+        
+        
         
         return cell
 
