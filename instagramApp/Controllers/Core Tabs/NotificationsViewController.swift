@@ -129,6 +129,7 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         case .like(_):
              // like cell
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationLikeEventTableViewCell.identfifier, for: indexPath) as! NotificationLikeEventTableViewCell
+            cell.delegate = self
             cell.configure(with: model)
             
             return cell
@@ -136,6 +137,8 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         case .follow:
             // follow cell
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier, for: indexPath) as! NotificationFollowEventTableViewCell
+//            cell.configure(with: model)
+            cell.delegate = self
             
             return cell
 
@@ -148,4 +151,24 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         return 52
     }
 
+}
+
+extension NotificationsViewController: NotificationLikeEventTableViewCellDeleagate {
+    func didTapRelatedPostButton(model: UserNotification) {
+        
+        print("tapped post")
+        // Open the post
+    }
+    
+}
+
+extension NotificationsViewController: NotificationFollowEventTableViewCellDelegate {
+    func didTapFollowUnFollowButton(model: UserNotification) {
+        
+        print("tapped button")
+        // perform database update
+    }
+    
+        
+    
 }

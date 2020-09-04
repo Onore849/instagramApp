@@ -9,7 +9,7 @@
 import SDWebImage
 import UIKit
 
-protocol NotificationLikeEventTableViewCellDeleagate {
+protocol NotificationLikeEventTableViewCellDeleagate: AnyObject {
     
     func didTapRelatedPostButton(model: UserNotification)
 }
@@ -17,9 +17,7 @@ protocol NotificationLikeEventTableViewCellDeleagate {
 class NotificationLikeEventTableViewCell: UITableViewCell {
     
     static let identfifier = "NotificationLikeEventCell"
-    
-    weak var delegate: NotificationFollowEventTableViewCellDelegate?
-    
+    weak var delegate: NotificationLikeEventTableViewCellDeleagate?
     private var model: UserNotification?
     
     private let profileImageView: UIImageView = {
@@ -60,6 +58,18 @@ class NotificationLikeEventTableViewCell: UITableViewCell {
         contentView.addSubview(profileImageView)
         contentView.addSubview(label)
         contentView.addSubview(postButton)
+        
+        postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapPostButton() {
+        
+        guard let model = model else {
+            
+            return
+        }
+        delegate?.didTapRelatedPostButton(model: model)
+        
     }
     
     override func layoutSubviews() {
