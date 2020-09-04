@@ -19,6 +19,8 @@ struct User {
     let birthDate: Date
     let gender: Gender
     let counts: UserCount
+    let bio: String
+    let profilePhoto: URL
     let joinDate: Date
 }
 
@@ -39,8 +41,10 @@ public enum UserPostType {
 /// Represent user post
 public struct UserPost {
     
+    let identifier: String
     let postType: UserPostType // either video or full resolution photo
     let thumbnailImage: URL
+    let postURL: URL
     let caption: String?
     let likeCount: [PostLikes]
     let comments: [PostComment]
