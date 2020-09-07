@@ -11,7 +11,7 @@ import UIKit
 enum UserNotificationType {
     
     case like(post: UserPost)
-    case follow
+    case follow(state: FollowState)
 }
 
 struct UserNotification {
@@ -79,6 +79,17 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
         
         for x in 0...100 {
             
+            let user = User(
+                username: "Hello world",
+                name: (first: "", last: ""),
+                birthDate: Date(),
+                gender: .male,
+                counts: UserCount(followers: 1, following: 1, posts: 1),
+                bio: "",
+                profilePhoto: URL(string: "https://www.google.com")!,
+                joinDate: Date()
+            )
+            
             let post = UserPost(
                 identifier: "",
                 postType: .photo,
@@ -87,21 +98,15 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
                 caption: nil,
                 likeCount: [],
                 comments: [],
-                createdDate: Date(), tabbedUsers: []
+                createdDate: Date(),
+                tabbedUsers: [],
+                owner: user
             )
             
             let model = UserNotification(
-                type: x % 2 == 0 ? .like(post: post) : .follow,
+                type: x % 2 == 0 ? .like(post: post) : .follow(state: .not_following),
                 text: "Hello World",
-                user: User(username: "Hello world",
-                           name: (first: "", last: ""),
-                           birthDate: Date(),
-                           gender: .male,
-                           counts: UserCount(followers: 1, following: 1, posts: 1),
-                           bio: "",
-                           profilePhoto: URL(string: "https://www.google.com")!,
-                           joinDate: Date())
-            )
+                user: user)
             
             models.append(model)
         }
@@ -156,8 +161,19 @@ final class NotificationsViewController: UIViewController, UITableViewDelegate, 
 extension NotificationsViewController: NotificationLikeEventTableViewCellDeleagate {
     func didTapRelatedPostButton(model: UserNotification) {
         
-        print("tapped post")
-        // Open the post
+        switch model.type {
+        case .like(post: let post):
+            // Open the post
+            let vc = PostViewController(model: post)
+            vc.title = post.postType.rawValue
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case .follow( _ ):
+            fatalError("Dev Issue: Should never get called")
+
+        }
+        
     }
     
 }

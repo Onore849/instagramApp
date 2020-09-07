@@ -15,6 +15,8 @@ final class IGFeedPostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = .secondarySystemBackground
     }
     
     // customCellの細かい設定
@@ -22,6 +24,10 @@ final class IGFeedPostTableViewCell: UITableViewCell {
         
         // confiogure cell
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     
