@@ -16,7 +16,7 @@ struct HomeFeedRenderViewModel {
     let comments: PostRenderViewModel
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController{
     
     private var feedRenderModels = [HomeFeedRenderViewModel]()
     
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
     private func createMockModels() {
         
         let user = User(
-            username: "Hello world",
+            username: "@Joe",
             name: (first: "", last: ""),
             birthDate: Date(),
             gender: .male,
@@ -202,6 +202,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch model.header.renderType {
         case .header(let user):
             let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier, for: indexPath) as! IGFeedPostHeaderTableViewCell
+            cell.configure(with: user)
+            cell.delegate = self
             
             return cell
         case .comments, .actions, .primaryContent:
@@ -213,10 +215,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         // post
         
         switch model.post.renderType {
+            
         case .primaryContent(let post):
-            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier, for: indexPath) as! IGFeedPostGeneralTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier, for: indexPath) as! IGFeedPostTableViewCell
+            
+            cell.configure(with: post)
             
             return cell
+            
         case .comments, .actions, .header :
             return UITableViewCell()
     }
@@ -297,3 +303,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension HomeViewController:  IGFeedPostHeaderTableViewCellDelegate  {
+    
+    func didTapMoreButton() {
+        
+        let actionSheet = UIAlertController(title: "Post Options", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Report Post", style: .destructive, handler: { [weak self] _ in
+            
+            self?.reportPost()
+            
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Report", style: .cancel, handler: nil))
+        present(actionSheet, animated: true)
+    }
+    
+    func reportPost() {
+        
+    }
+    
+    
+}
